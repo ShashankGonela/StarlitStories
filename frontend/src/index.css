@@ -1,0 +1,340 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Nebula Background Animation */
+.nebula-background {
+  background: radial-gradient(circle at 20% 20%, #1B1B3A, #0E0E2C, #1A103D);
+  animation: nebula 20s ease-in-out infinite alternate;
+}
+
+@keyframes nebula {
+  0% {
+    background: radial-gradient(circle at 20% 20%, #1B1B3A, #0E0E2C, #1A103D);
+  }
+  50% {
+    background: radial-gradient(circle at 80% 80%, #2A1A5E, #0E0E2C, #261C4C);
+  }
+  100% {
+    background: radial-gradient(circle at 40% 60%, #1E1442, #0E0E2C, #1B1B3A);
+  }
+}
+
+/* Starfield Effect */
+.stars,
+.stars2,
+.stars3 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
+
+.stars {
+  background: transparent url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSIxIiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIwLjgiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIzMCIgcj0iMSIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iMC42Ii8+PGNpcmNsZSBjeD0iODAiIGN5PSIxMjAiIHI9IjEiIGZpbGw9IiNmZmYiIG9wYWNpdHk9IjAuNyIvPjxjaXJjbGUgY3g9IjE4MCIgY3k9IjE1MCIgcj0iMSIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iMC41Ii8+PGNpcmNsZSBjeD0iMjAiIGN5PSIxODAiIHI9IjEiIGZpbGw9IiNmZmYiIG9wYWNpdHk9IjAuOSIvPjwvc3ZnPg==') repeat;
+  animation: animateStars 50s linear infinite;
+}
+
+.stars2 {
+  background: transparent url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48Y2lyY2xlIGN4PSI3MCIgY3k9IjcwIiByPSIxLjUiIGZpbGw9IiNmZmYiIG9wYWNpdHk9IjAuNiIvPjxjaXJjbGUgY3g9IjIyMCIgY3k9IjEwMCIgcj0iMS41IiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIwLjQiLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSIyMDAiIHI9IjEuNSIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iMC43Ii8+PGNpcmNsZSBjeD0iMjgwIiBjeT0iMjUwIiByPSIxLjUiIGZpbGw9IiNmZmYiIG9wYWNpdHk9IjAuNSIvPjwvc3ZnPg==') repeat;
+  animation: animateStars 75s linear infinite;
+}
+
+.stars3 {
+  background: transparent url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9IjIiIGZpbGw9IiNmZmYiIG9wYWNpdHk9IjAuMyIvPjxjaXJjbGUgY3g9IjMwMCIgY3k9IjE1MCIgcj0iMiIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iMC40Ii8+PGNpcmNsZSBjeD0iMTUwIiBjeT0iMzAwIiByPSIyIiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIwLjUiLz48Y2lyY2xlIGN4PSIzNTAiIGN5PSIzNTAiIHI9IjIiIGZpbGw9IiNmZmYiIG9wYWNpdHk9IjAuNiIvPjwvc3ZnPg==') repeat;
+  animation: animateStars 100s linear infinite;
+}
+
+@keyframes animateStars {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-1000px);
+  }
+}
+
+/* Title Glow Effect */
+.glow-text {
+  animation: textGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes textGlow {
+  0% {
+    text-shadow: 0 0 20px rgba(185, 175, 255, 0.5),
+                 0 0 40px rgba(185, 175, 255, 0.3);
+    opacity: 0.95;
+  }
+  100% {
+    text-shadow: 0 0 30px rgba(185, 175, 255, 0.8),
+                 0 0 60px rgba(185, 175, 255, 0.4);
+    opacity: 1;
+  }
+}
+
+/* Message Bubbles */
+.message-bubble {
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.user-message {
+  background: linear-gradient(135deg, rgba(185, 175, 255, 0.15), rgba(255, 211, 105, 0.15));
+  border: 1px solid rgba(185, 175, 255, 0.3);
+  margin-left: auto;
+  margin-right: 0;
+  max-width: 60%;  /* Increased from 75% for better space usage */
+}
+
+.assistant-message {
+  background: rgba(26, 16, 61, 0.6);
+  border: 1px solid rgba(185, 175, 255, 0.2);
+  margin-right: auto;
+  margin-left: 0;
+  max-width: 90%;  /* Increased from 85% to use more screen space */
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+/* Fade In Animation */
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Input Glow Effect */
+.input-glow {
+  transition: all 0.3s ease;
+}
+
+.input-glow:focus-within {
+  box-shadow: 0 0 30px rgba(185, 175, 255, 0.4),
+              0 0 60px rgba(185, 175, 255, 0.2);
+  border-color: rgba(185, 175, 255, 0.6);
+}
+
+/* Send Button Shimmer */
+.send-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.send-button::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transform: rotate(45deg);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+/* Loading Dots */
+.loading-dots {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.loading-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #B9AFFF;
+  animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.loading-dots span:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.loading-dots span:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes bounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(14, 14, 44, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(185, 175, 255, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(185, 175, 255, 0.5);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .assistant-message {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .user-message {
+    max-width: 90%;
+  }
+}
+
+/* 3D Flip Card Styles */
+.perspective {
+  perspective: 2000px;
+}
+
+.flip-card-container {
+  width: 100%;
+  max-width: 90%;  /* Match assistant message width */
+  margin: 2rem 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.flip-card {
+  position: relative;
+  width: 100%;
+  transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.flip-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  width: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: opacity 0.4s ease;
+}
+
+.flip-card-front {
+  transform: rotateY(0deg);
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+/* Moral Card - Special styling for the back side */
+.moral-card {
+  background: linear-gradient(135deg, rgba(42, 26, 94, 0.8), rgba(30, 20, 66, 0.9));
+  border: 2px solid rgba(255, 211, 105, 0.4);
+  box-shadow: 0 0 40px rgba(185, 175, 255, 0.3),
+              0 0 80px rgba(255, 211, 105, 0.2);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glowing moral text */
+.moral-glow {
+  animation: moralGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes moralGlow {
+  0% {
+    text-shadow: 0 0 15px rgba(185, 175, 255, 0.6),
+                 0 0 25px rgba(185, 175, 255, 0.4);
+  }
+  100% {
+    text-shadow: 0 0 25px rgba(255, 211, 105, 0.6),
+                 0 0 40px rgba(255, 211, 105, 0.4);
+  }
+}
+
+/* Soft title glow */
+.glow-text-soft {
+  text-shadow: 0 0 15px rgba(255, 211, 105, 0.5),
+               0 0 30px rgba(255, 211, 105, 0.3);
+}
+
+.glow-text-strong {
+  animation: strongGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes strongGlow {
+  0% {
+    text-shadow: 0 0 20px rgba(255, 211, 105, 0.8),
+                 0 0 40px rgba(255, 211, 105, 0.5),
+                 0 0 60px rgba(255, 211, 105, 0.3);
+  }
+  100% {
+    text-shadow: 0 0 30px rgba(255, 211, 105, 1),
+                 0 0 60px rgba(255, 211, 105, 0.7),
+                 0 0 90px rgba(255, 211, 105, 0.4);
+  }
+}
+
+/* Flip hint animation */
+@keyframes pulseHint {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}

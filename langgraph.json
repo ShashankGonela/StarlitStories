@@ -1,0 +1,108 @@
+{
+  "name": "story-teller-agent",
+  "version": "0.1.0",
+  "description": "Child-safe storytelling agent with LangGraph",
+  "runtime": {
+    "provider": "gemini",
+    "defaultTimeout": 60000,
+    "maxLoopIterations": 3
+  },
+  "nodes": [
+    {
+      "id": "MainAgent",
+      "type": "agent",
+      "model": "google/gemini-2.5-flash",
+      "systemPromptFile": "src/react_agent/prompts/main_agent_prompt.txt",
+      "description": "Routes user requests and ensures child-safe storytelling only",
+      "timeout": 30000
+    },
+    {
+      "id": "StoryGenerator",
+      "type": "tool",
+      "model": "google/gemini-2.5-pro",
+      "systemPromptFile": "src/react_agent/prompts/story_generator_prompt.txt",
+      "description": "Generates or modifies stories based on themes",
+      "timeout": 60000
+    },
+    {
+      "id": "StoryChecker",
+      "type": "validator",
+      "model": "google/gemini-2.5-flash",
+      "systemPromptFile": "src/react_agent/prompts/story_checker_prompt.txt",
+      "description": "Validates story appropriateness and theme adherence",
+      "timeout": 30000
+    },
+    {
+      "id": "MoralSummarizer",
+      "type": "tool",
+      "model": "google/gemini-2.5-flash",
+      "systemPromptFile": "src/react_agent/prompts/moral_summarizer_prompt.txt",
+      "description": "Extracts and summarizes the moral lesson",
+      "timeout": 20000
+    },
+    {
+      "id": "StoryRetriever",
+      "type": "tool",
+      "model": "google/gemini-2.5-pro",
+      "systemPromptFile": "src/react_agent/prompts/story_retriever_prompt.txt",
+      "description": "Retrieves canonical versions of popular/classic stories",
+      "timeout": 45000
+    },
+    {
+      "id": "Formatter",
+      "type": "tool",
+      "model": "google/gemini-2.5-flash",
+      "systemPromptFile": "src/react_agent/prompts/formatter_prompt.txt",
+      "description": "Formats the final story output for display",
+      "timeout": 20000
+    }
+  ],
+  "edges": [
+    {
+      "from": "MainAgent",
+      "to": "StoryGenerator",
+      "condition": "new_story_request"
+    },
+    {
+      "from": "MainAgent",
+      "to": "StoryGenerator",
+      "condition": "update_story_request"
+    },
+    {
+      "from": "MainAgent",
+      "to": "StoryRetriever",
+      "condition": "popular_story_request"
+    },
+    {
+      "from": "StoryGenerator",
+      "to": "StoryChecker"
+    },
+    {
+      "from": "StoryRetriever",
+      "to": "StoryChecker"
+    },
+    {
+      "from": "StoryChecker",
+      "to": "StoryGenerator",
+      "condition": "not_approved",
+      "maxIterations": 3
+    },
+    {
+      "from": "StoryChecker",
+      "to": "MoralSummarizer",
+      "condition": "approved"
+    },
+    {
+      "from": "MoralSummarizer",
+      "to": "Formatter"
+    }
+  ],
+  "state": {
+    "theme": "string",
+    "last_story_generated": "object",
+    "turn_count": "integer",
+    "feedback_history": "array",
+    "approved_story": "object",
+    "iteration_count": "integer"
+  }
+}
