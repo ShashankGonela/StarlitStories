@@ -147,7 +147,6 @@ starlit-stories/
 │   │   └── index.css           # Starfield animations
 │   ├── index.html
 │   └── package.json
-├── .env                        # Your API keys (don't commit!)
 ├── .env.example               # Template
 ├── pyproject.toml             # Python dependencies
 ├── start-all.bat              # Start both servers
